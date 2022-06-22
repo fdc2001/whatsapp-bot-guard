@@ -6,6 +6,8 @@ async function handler(client, message) {
 
 const signature={
     name: "chatID",
+    special: false,
+    onlyAdmin: true,
     description: "Retorna o id do chat",
     handler
 }

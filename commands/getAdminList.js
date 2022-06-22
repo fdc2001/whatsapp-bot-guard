@@ -16,6 +16,8 @@ async function handler(client, message) {
 
 const signature={
     name: "admins",
+    special: false,
+    onlyAdmin: false,
     description: "Retorna os administradores do grupo",
     handler
 }
