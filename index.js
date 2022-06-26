@@ -7,8 +7,6 @@ const connectDB = require("./config/dbCoon");
 connectDB()
 mongoose.connection.once('open', () => {
     console.log('MongoDB is connected')
-    wa.create({
-        logConsole:true
-    }).then(client => start(client));
+    wa.create().then(client => start(client));
 })
 
