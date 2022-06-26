@@ -4,8 +4,7 @@ const loader = require("./loader");
 async function handler(client, message) {
 
 
-
-    if(message.isGroup){
+    if(message.isGroupMsg) {
         return await helpGroup(client, message);
     }else{
         return await helpPrivate(client, message);
