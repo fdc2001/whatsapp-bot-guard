@@ -4,6 +4,7 @@ const {getGroupName,listPermissionsAvailableArray,listPermissionsAvailable} = re
 
 async function handler(client, message) {
     const isGroup = message.isGroupMsg;
+    console.log(message.body);
     if(!isGroup){
         if(message.body ==='/'+signature.name){
             return await listGroupsAndSend(client, message);
