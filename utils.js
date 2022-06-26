@@ -17,7 +17,8 @@ function isValidURL(string) {
 }
 
 function getGroupName(command, signature){
-    let name =  command.replaceAll('/'+signature.name, '');
+    let name =  command.replaceAll('/'+signature.name, '').trim();
+    console.log(name)
     if (name.includes('[')) {
         const nameArr = name.match(/\[(.*?)\]/);
         name = name.replace(nameArr[0], '')

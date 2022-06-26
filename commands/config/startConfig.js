@@ -39,7 +39,9 @@ async function listGroupsAndSend(client, message) {
 async function verifyGroupAndListPermissions(client, message) {
     const groupName = getGroupName(message.body, signature)
     const groupId = await getChatId(client, message, groupName);
+    console.log(groupId)
     const admins = await client.getGroupAdmins(groupId);
+    console.log(admins)
     const duplicated = await Group.findOne({chatId: groupId}).exec();
 
     if(duplicated){
@@ -66,9 +68,11 @@ async function getChatId(client, message, groupName){
     if(!groupName.includes('@c.us')){
         const groups = await client.getAllGroups();
         for (const group of groups) {
-            if(group.contact.name.toLowerCase().replaceAll(' ', '')===groupName.toLowerCase().replaceAll(' ', '')){
-                group.contact.name.toLowerCase().replaceAll(' ', '')
-                groupId = group.contact.id;
+            if(group.canSend){
+                if(group.contact.name.toLowerCase().replaceAll(' ', '')===groupName.toLowerCase().replaceAll(' ', '')){
+                    group.contact.name.toLowerCase().replaceAll(' ', '')
+                    groupId = group.contact.id;
+                }
             }
         }
     }else{
