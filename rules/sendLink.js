@@ -1,6 +1,6 @@
 const utils = require("../utils");
 const {appName} = require("../config");
-const Infraction = require("../model/infraction");
+const Infraction = require("../model/Infraction");
 
 async function handler(client, message) {
     const adminList = await client.getGroupAdmins(message.chat.id);

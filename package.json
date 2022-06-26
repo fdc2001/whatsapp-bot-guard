@@ -1,7 +1,11 @@
 {
   "name": "whatsappbootguard",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "System manage groups in whatsapp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fdc2001/whatsapp-bot-guard.git"
+  },
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
