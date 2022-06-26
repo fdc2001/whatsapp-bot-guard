@@ -1,25 +1,43 @@
-const getAdminList = require("./getAdminList");
-const getChatId = require("./getChatId");
-const getLinkGroup = require("./getLinkGroup");
-const getRules = require("./getRules");
-const help = require("./help");
-
+const {userIsAdmin} = require("../utils");
 const listCommands = {
-    'admins': getAdminList,
-    'chatid': getChatId,
-    'link': getLinkGroup,
-    'regras': getRules,
-    'help': help,
+    'admins':               require("./getAdminList"),
+    'chatid':               require("./getChatId"),
+    'link':                 require("./getLinkGroup"),
+    'rules':                require("./getRules"),
+    'help':                 require("./help"),
+    'add':                  require('./addParticipant'),
+    'open':                 require('./openGroup'),
+    'close':                require('./closeGroup'),
+    'alledit':              require('./allEditGroup'),
+    'onlyadminedit':        require('./onlyAdminEditGroup'),
+    //Config Groups
+    'start':                require("./config/startConfig"),
+    'changepermissions':    require("./config/changePermissions"),
+    'create':    require("./config/create"),
 }
 
 exports.loader = async function loader (client,message) {
     let command = message.body.split(' ')[0].replace('/', '');
+
     command=command.toLowerCase();
-    console.log(listCommands)
     if (listCommands[command]) {
-        return await listCommands[command].handler(client, message);
+        const isGroup = message.isGroupMsg;
+
+        let canUseCommand = true;
+        if(listCommands[command].onlyGroup){
+            canUseCommand = isGroup;
+        }
+        if(listCommands[command].onlyAdmin){
+            if(await userIsAdmin(client, message, message.sender.id)){
+                canUseCommand = true;
+            }   else{
+                return await client.sendReplyWithMentions(message.chatId, "Você não tem premissões para usar este comando.\nComando exclusivo para administradores", message.id);
+            }
+        }
+        if(canUseCommand) {
+            return await listCommands[command].handler(client, message);
+        }
     }
-    console.log(command)
 }
 
 exports.getCommands = function getCommands () {

@@ -4,7 +4,7 @@ const loader = require("../rules/loader");
 async function handler(client, message) {
 
     const rules = loader.getRules();
-    const rulesEnabled = loader.getRulesEnabled();
+    const rulesEnabled = await loader.getRulesEnabled(message);
     let messageText = appName+`Os regras ativadas são: \n`;
 
     for (const [,rule] of Object.entries(rules)) {
@@ -17,8 +17,10 @@ async function handler(client, message) {
 }
 
 const signature={
-    name: "regras",
+    name: "rules",
     special: false,
+    onlyGroup: true,
+    onlyPrivate: false,
     onlyAdmin: false,
     description: "Lista as regras ativas no grupo",
     handler

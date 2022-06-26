@@ -1,3 +1,3 @@
 module.exports = {
-    appName : "*BOT Guard* \n\n"
+    appName : process.env.APP_NAME??"Bot Guard\n\n",
 }

@@ -18,6 +18,8 @@ const signature={
     name: "admins",
     special: false,
     onlyAdmin: false,
+    onlyGroup: true,
+    onlyPrivate: false,
     description: "Retorna os administradores do grupo",
     handler
 }

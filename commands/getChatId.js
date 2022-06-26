@@ -8,7 +8,10 @@ const signature={
     name: "chatID",
     special: false,
     onlyAdmin: true,
+    onlyGroup: true,
+    onlyPrivate: false,
     description: "Retorna o id do chat",
+    hidden:true,
     handler
 }
 

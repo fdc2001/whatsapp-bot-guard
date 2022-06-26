@@ -5,3 +5,10 @@ open-wa-session.sw_col.json
 _IGNORE_session
 yarn.lock
 node_modules
+.env
+
+# managed by open-wa
+**.data.json
+**.node-persist**
+**_IGNORE_**
+# end managed by open-wa
